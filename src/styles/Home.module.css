@@ -1,0 +1,119 @@
+/* Main container for the entire page */
+.pageShell {
+  position: relative;      /* Establishes a positioning context for absolutely positioned children */
+  min-height: 100vh;       /* Ensures the container takes at least the full viewport height */
+  overflow: hidden;        /* Hides any content that overflows the container */
+  background-color: #0f172a; /* Dark blue background color */
+  color: #f8fafc;          /* Light gray text color for contrast */
+  padding: 0;              /* Removes default padding */
+  margin: 0;               /* Removes default margin */
+}
+
+/* Base style for glowing circle elements */
+.glowCircle {
+  position: absolute;      /* Positions circles absolutely within their containing element */
+  border-radius: 50%;      /* Makes the element circular */
+  filter: blur(80px);      /* Applies a blur effect to create a soft glow */
+  opacity: 0.3;            /* Makes the circles semi-transparent */
+  z-index: 0;              /* Ensures circles stay behind content */
+}
+
+/* Pink glowing circle positioned at top-right */
+.glowCircle.pink {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #ec4899 0%, rgba(236, 72, 153, 0) 70%);
+  top: -200px;
+  right: -100px;
+  animation: float 8s ease-in-out infinite; /* Applies floating animation */
+}
+
+/* Blue glowing circle positioned at bottom-left */
+.glowCircle.blue {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #3b82f6 0%, rgba(59, 130, 246, 0) 70%);
+  bottom: -300px;
+  left: -200px;
+}
+
+/* Glass-like panel style for content containers */
+.glassPanel {
+  background: rgba(15, 23, 42, 0.7); /* Semi-transparent dark blue */
+  backdrop-filter: blur(10px);       /* Creates the frosted glass effect */
+  border-radius: 20px;               /* Rounded corners */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36); /* Soft shadow for depth */
+  position: relative;                /* Establishes positioning context */
+  z-index: 1;                        /* Ensures content stays above background elements */
+}
+
+/* Text with gradient color effect */
+.gradientText {
+  background: linear-gradient(120deg, #6366f1, #ec4899);
+  -webkit-background-clip: text;     /* Clips background to text shape */
+  background-clip: text;
+  color: transparent;                /* Makes original text color transparent */
+}
+
+/* Styled horizontal divider with gradient effect */
+.neonDivider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #60a5fa, transparent);
+  margin: 20px 0;
+  position: relative;
+}
+
+/* Creates a subtle shadow effect below the divider */
+.neonDivider::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  bottom: -4px;
+}
+
+/* Animation for floating effect */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Tablet and smaller devices */
+@media (max-width: 900px) {
+  .glowCircle.pink {
+    width: 300px;
+    height: 300px;
+    top: -150px;
+    right: -80px;
+  }
+  
+  .glowCircle.blue {
+    width: 400px;
+    height: 400px;
+    bottom: -200px;
+    left: -150px;
+  }
+}
+
+/* Mobile devices */
+@media (max-width: 600px) {
+  .glassPanel {
+    padding: 2rem !important;
+    margin-top: 2rem !important;
+  }
+  
+  /* Hide glow circles on very small screens for better performance */
+  .glowCircle {
+    display: none;
+  }
+}
